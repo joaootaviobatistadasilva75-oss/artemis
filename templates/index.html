@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemis II</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            color:white;
+            overflow-x:hidden;
+            position:relative;
+            min-height:100vh;
+        }
+
+        /* FUNDO DESFOCADO */
+
+        body::before{
+            content:"";
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:url('{{ url_for("static", filename="barbie.jpg") }}') center center/cover no-repeat;
+            filter:blur(10px);
+            transform:scale(1.1);
+            z-index:-2;
+        }
+
+        /* CAMADA ROSA */
+
+        body::after{
+            content:"";
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(255, 20, 147, 0.35);
+            z-index:-1;
+        }
+
+        /* HEADER */
+
+        header{
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(10px);
+            border-bottom:2px solid #ff69b4;
+            padding:20px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            animation:fadeDown 1s ease;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo img{
+            width:90px;
+            border-radius:50%;
+            border:3px solid white;
+            animation:spin 10s linear infinite;
+        }
+
+        .logo h1{
+            font-size:42px;
+            color:white;
+            text-shadow:0 0 15px #ff69b4;
+        }
+
+        /* CONTAINER */
+
+        .container{
+            width:90%;
+            margin:auto;
+            padding:50px 0;
+        }
+
+        /* TEXTO */
+
+        .texto{
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(12px);
+            border-radius:20px;
+            padding:30px;
+            line-height:1.8;
+            font-size:19px;
+            margin-bottom:40px;
+            border:2px solid rgba(255,255,255,0.2);
+            animation:fadeUp 1s ease;
+        }
+
+        /* GALERIA */
+
+        .galeria{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+            gap:25px;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(12px);
+            border-radius:20px;
+            overflow:hidden;
+            transition:0.4s;
+            border:2px solid rgba(255,255,255,0.2);
+            animation:fadeUp 1.2s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-10px) scale(1.03);
+            box-shadow:0 0 25px #ff69b4;
+        }
+
+        .card img{
+            width:100%;
+            height:260px;
+            object-fit:cover;
+        }
+
+        .card p{
+            padding:18px;
+            text-align:center;
+            font-size:18px;
+            color:white;
+        }
+
+        /* FOOTER */
+
+        footer{
+            margin-top:50px;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(10px);
+            text-align:center;
+            padding:20px;
+            border-top:2px solid #ff69b4;
+            color:white;
+        }
+
+        /* ANIMAÇÕES */
+
+        @keyframes fadeUp{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @keyframes fadeDown{
+            from{
+                opacity:0;
+                transform:translateY(-30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @keyframes spin{
+            from{
+                transform:rotate(0deg);
+            }
+
+            to{
+                transform:rotate(360deg);
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Artemis">
+            <h1>Artemis II</h1>
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <div class="texto">
+
+            <p>
+                A missão Artemis II será a primeira missão tripulada do programa Artemis da NASA.
+                Seu principal objetivo é levar astronautas em uma viagem ao redor da Lua utilizando
+                a nave Orion e o foguete Space Launch System (SLS).
+            </p>
+
+            <br>
+
+            <p>
+                A missão representa um passo importante para o retorno da humanidade à exploração lunar.
+                Durante o voo, serão realizados testes de segurança, comunicação e navegação espacial
+                para preparar futuras missões humanas à Lua e a Marte.
+            </p>
+
+        </div>
+
+        <div class="galeria">
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='1.jpg') }}" alt="Imagem 1">
+                <p>Lançamento do foguete SLS</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='2.webp') }}" alt="Imagem 2">
+                <p>Nave Orion em missão espacial</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='3.jpg') }}" alt="Imagem 3">
+                <p>Exploração espacial moderna</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='4.webp') }}" alt="Imagem 4">
+                <p>Treinamento dos astronautas</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='5.webp') }}" alt="Imagem 5">
+                <p>Futuro das missões lunares</p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        Projeto Artemis II • Python + Flask + HTML
+    </footer>
+
+</body>
+</html>
